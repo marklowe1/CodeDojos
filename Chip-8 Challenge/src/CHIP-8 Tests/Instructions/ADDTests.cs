@@ -33,14 +33,14 @@ namespace CHIP_8_Tests.Instructions
         [TestCase(0x05)]
         public void ADD_AddsValue(byte valueToAdd)
         {
-            _add = new ADD(_register, valueToAdd);
-            
-            var expectedResult = new Register();
+            _add = new ADD(new Nybble(), new Nybble(valueToAdd));
+            _add.Arguments = new Tribble(new Nybble(), new Nybble(), new Nybble(valueToAdd));
+            var expectedResult = new Nybble();
             expectedResult += valueToAdd;
 
             _add.Execute(_virtualMachine);
 
-            Assert.That((Register)_virtualMachine.V[_register], Is.EqualTo(expectedResult));
+            Assert.That((Nybble)_virtualMachine.V[_register], Is.EqualTo(expectedResult));
         }
     }
 }

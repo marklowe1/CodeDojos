@@ -30,12 +30,12 @@ namespace CHIP_8_Tests.Instructions
         [TestCase(0x03)]
         [TestCase(0x04)]
         [TestCase(0x05)]
-        public void ADD_AddsValue(byte value)
+        public void ADDI_AddsValue(byte value)
         {
             _add = new ADDI(_register);
-            _virtualMachine.I = new Tribble(value);
+            _add.Arguments = new Tribble(new Nybble(), new Nybble(), new Nybble(value));
 
-            var expectedResponse = new Tribble(value); 
+            var expectedResponse = _virtualMachine.I;
             expectedResponse += _register;
 
 
